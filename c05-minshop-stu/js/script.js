@@ -51,3 +51,58 @@ let books = [
     provider: "Tuổi trẻ",
   },
 ];
+
+function init() {
+  for (let i = 0; i < books.length; i++) {
+    let danhSach = document.getElementById("list");
+
+    let sach = document.createElement("div");
+    sach.className = "item";
+
+    let hinh = document.createElement("img");
+    hinh.src = "./images/0" + books[i].id + ".jpg";
+    sach.appendChild(hinh);
+
+    let tenSach = document.createElement("h2");
+    tenSach.innerHTML = books[i].name;
+    sach.appendChild(tenSach);
+
+    let giaSach = document.createElement("p");
+    giaSach.innerHTML = books[i].price;
+    sach.appendChild(giaSach);
+
+    danhSach.appendChild(sach);
+  }
+}
+
+function fromGia(min, max) {
+  console.log(min.max);
+  for (let i = 0; i < books.length; i++) {
+    let sachHienTai = books[i];
+    if (min <= sachHienTai.price && sachHienTai.price <= max) {
+      let danhSach = document.getElementById("list");
+      let sach = document.createElement("div");
+      sach.className = "item";
+      let hinh = document.createElement("img");
+      hinh.src = "./images/0" + sachHienTai.id + ".jpg";
+      sach.appendChild(hinh);
+      let tenSach = document.createElement("h2");
+      tenSach.innerHTML = sachHienTai.name;
+      sach.appendChild(tenSach);
+      let giaSach = document.createElement("p");
+      giaSach.innerHTML = sachHienTai.price;
+      sach.appendChild(giaSach);
+      danhSach.appendChild(sach);
+    }
+    console.log(sachHienTai);
+  }
+}
+
+let xetGia = document.getElementById("apply-price-filter");
+xetGia.addEventListener("click", function () {
+  let minGia = document.getElementById("min-price");
+  let maxGia = document.getElementById("max-price");
+  fromGia(Number(minGia.value), Number(maxGia.value));
+});
+
+init();
